@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/app
+
+  server:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/usr/app
+
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: mySecret1234
+      MYSQL_DATABASE: users_db
+    ports:
+      - 3308:3306
+    volumes:
+      - ./database/setup/setup.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./database/data:/var/lib/mysql
