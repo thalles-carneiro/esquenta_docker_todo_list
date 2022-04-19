@@ -1,12 +1,16 @@
 FROM node:alpine
 
-WORKDIR /usr/app
+USER node
 
-COPY package*.json ./
+RUN mkdir -p /home/node/app
+
+WORKDIR /home/node/app
+
+COPY --chown=node:node package*.json ./
 
 RUN npm install
 
-COPY ./ ./
+COPY --chown=node:node ./ ./
 
 EXPOSE 3000
 

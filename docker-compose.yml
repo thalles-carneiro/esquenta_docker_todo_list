@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 services:
   client:
@@ -10,7 +10,8 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - ./frontend:/usr/app
+      - ./frontend:/home/node/app
+      - /home/node/app/node_modules
 
   server:
     build:
@@ -21,7 +22,8 @@ services:
     ports:
       - 3001:3001
     volumes:
-      - ./backend:/usr/app
+      - ./backend:/home/node/app
+      - /home/node/app/node_modules
 
   mysql:
     image: mysql
