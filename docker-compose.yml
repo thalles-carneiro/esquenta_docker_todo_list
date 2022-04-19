@@ -35,3 +35,7 @@ services:
     volumes:
       - ./database/setup/setup.sql:/docker-entrypoint-initdb.d/1.sql
       - ./database/data:/var/lib/mysql
+
+# Links que me ajudaram a resolver o problema com a instalação das dependências
+# https://mherman.org/blog/dockerizing-a-react-app/
+# https://github.com/nodejs/docker-node/issues/740#issuecomment-538644464
